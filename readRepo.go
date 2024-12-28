@@ -38,7 +38,12 @@ func getFolder(folder string) (string, error) {
 }
 
 func genDatesMap(email, repo string, dates map[int]int) map[int]int {
-	cmd := exec.Command("git", "-C", repo, "log", "--author="+email)
+	var cmd *exec.Cmd
+	if len(email) != 0 {
+		cmd = exec.Command("git", "-C", repo, "log", "--author="+email)
+	} else {
+		cmd = exec.Command("git", "-C", repo, "log", "--author="+email)
+	}
 	res, err := cmd.Output()
 	if err != nil {
 		log.Fatal(err)

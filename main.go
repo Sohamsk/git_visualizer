@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	email := flag.String("email", "", "Email address of the user")
+	email := flag.String("email", "", "Email address of the user. Leave empty to get the commits made by any author")
 	folder := flag.String("folder", "", "Folder to Scan")
 	flag.Parse()
 

@@ -25,6 +25,7 @@ func determineDayOfWeek(currentDayOfWeek int, daysAgo int) int {
 	return int(dayOfTheWeek)
 }
 
+// TODO: Figure out a way to get the first and last day of consideration and mark them a negative(invalid value) so that once they are found when rendering it can be switched out
 type column []int
 
 func genCols(keys []int, dates map[int]int) map[int]column {
