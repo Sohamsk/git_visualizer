@@ -42,23 +42,37 @@ func genCols(keys []int, dates map[int]int) map[int]column {
 	return cols
 }
 
+func determineAndPrintColour(commit int) {
+	if commit >= 10 {
+		fmt.Print("\033[48;5;34m \033[0m")
+	} else if commit >= 5 {
+		fmt.Print("\033[48;5;28m \033[0m")
+	} else if commit >= 1 {
+		fmt.Print("\033[48;5;22m \033[0m")
+	} else {
+		fmt.Print("\033[48;5;17m \033[0m")
+	}
+}
+
 func printStats(cols map[int]column) {
 	for i := 0; i < 7; i++ {
 		switch i {
 		case 1:
-			fmt.Print("Mon")
+			fmt.Print("Mon ")
 		case 3:
-			fmt.Print("Wed")
+			fmt.Print("Wed ")
 		case 5:
-			fmt.Print("Fri")
+			fmt.Print("Fri ")
 		default:
-			fmt.Print("   ")
+			fmt.Print("    ")
 		}
 		for j := 26; j >= 0; j-- {
 			if len(cols[j]) == 0 {
-				fmt.Print(" ", 0, " ")
+				//fmt.Print(" ", 0, " ")
+				determineAndPrintColour(0)
 			} else {
-				fmt.Print(" ", cols[j][i], " ")
+				//fmt.Print(" ", cols[j][i], " ")
+				determineAndPrintColour(cols[j][i])
 			}
 		}
 		fmt.Println()
