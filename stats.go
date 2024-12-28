@@ -41,7 +41,6 @@ func handleCutoffs(cols map[int]column, cutoff, start time.Weekday, week int) {
 
 }
 
-// TODO: will check tomorrow whether the offsets are working or not they seem well for now
 func calculateOffset() int {
 	var offset int
 	switch time.Now().Weekday() {
