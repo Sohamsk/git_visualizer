@@ -53,18 +53,19 @@ func genDatesMap(email, repo string, dates map[int]int) map[int]int {
 
 	for _, chunk := range chunks {
 		lines := strings.Split(chunk, "\n")
+		curr := time.Now()
+		curr = time.Date(curr.Year(), curr.Month(), curr.Day(), 0, 0, 0, 0, curr.Location())
 		for _, line := range lines {
 			if strings.HasPrefix(line, "Date:") {
 				t, err := time.Parse(ref, strings.TrimPrefix(line, "Date:   "))
 				if err != nil {
 					log.Fatal(err)
 				}
-				curr := time.Now()
+				t = time.Date(t.Year(), t.Month(), t.Day(), 0, 0, 0, 0, t.Location())
 				index := int(math.Round((curr.Sub(t).Hours()) / 24))
 				if index <= 183 {
 					dates[index]++
 				}
-
 			}
 		}
 	}
